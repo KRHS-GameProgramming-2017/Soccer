@@ -2,6 +2,7 @@ import pygame, math, sys
 
 from Ball import *
 from Goal import *
+from Player import *
 
 pygame.init()
 
@@ -22,7 +23,9 @@ bgRect = bgImage.get_rect()
 
 ball = Ball(size, [30,30])
 rGoal = Goal("right", size)
-lGoal = Goal("left", size)
+lGoal = Goal("left", size) 
+
+
 
 
 
@@ -30,6 +33,10 @@ lGoal = Goal("left", size)
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: sys.exit()
+        
+        
+        
+
     
 
 
