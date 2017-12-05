@@ -1,5 +1,5 @@
 import pygame, math, sys
-
+from Ball import *
 
 pygame.init()
 
@@ -18,7 +18,7 @@ bgColor = r,g,b = 0, 128, 33
 bgImage = pygame.image.load("Images/field/fieldfull.png")
 bgRect = bgImage.get_rect()
 
-
+ball = Ball(size)
 
 
 
@@ -47,5 +47,6 @@ while True:
     bgColor = r,g,b
     screen.fill(bgColor)
     screen.blit(bgImage, bgRect)
+    screen.blit(ball.image, ball.rect)
     pygame.display.flip()
     clock.tick(60)
