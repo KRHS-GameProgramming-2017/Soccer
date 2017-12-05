@@ -3,7 +3,7 @@ import pygame, math
 class Goal():
     def __init__(self, side, screenSize, size=None):
         self.image = pygame.image.load("Images/goal/Goal.png")
-        yOffset = 9;  #fudge factor to fix goals not quite center
+        yOffset = 0;  #fudge factor to fix goals not quite center
         if size:
             self.image=pygame.transform.scale(self.image,size)
         if side == "left":
