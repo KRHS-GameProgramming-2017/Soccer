@@ -1,4 +1,5 @@
 import pygame, math
+
 class Ball():
     def __init__(self,  screenSize, size=None):
         self.image = pygame.image.load("Images/ball/Soccerball.png")
