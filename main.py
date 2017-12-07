@@ -21,7 +21,7 @@ bgColor = r,g,b = 0, 128, 33
 bgImage = pygame.image.load("Images/field/fieldfull.png")
 bgRect = bgImage.get_rect()
 
-ball = Ball(size, [30,30])
+ball = Ball(size, [50,50])
 rGoal = Goal("right", size)
 lGoal = Goal("left", size) 
 
