@@ -53,12 +53,18 @@ class Playerball():
         if self.side == "right":
             if self.rect.left < width/2+self.centerSize or self.rect.right > width-self.endSize:
                 self.speed[0] = -self.speed[0]
+                self.move()
+                self.speed[0] = 0
         else:
             if self.rect.left < self.endSize or self.rect.right > width/2-self.centerSize:
                 self.speed[0] = -self.speed[0]
+                self.move()
+                self.speed[0] = 0
 
         if self.rect.top < self.borderSize or self.rect.bottom > height - self.borderSize:
             self.speed[1] = -self.speed[1]
+            self.move()
+            self.speed[1] = 0
      
     def playerBounce(self, other):
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
