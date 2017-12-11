@@ -8,9 +8,12 @@ class Ball():
         self.rect = self.image.get_rect(center=[screenSize[0]/2, screenSize[1]/2])
         self.radius=self.rect.width/2
         self.speed = [0,0]
-        self.maxSpeed = 10
+        self.maxSpeed = 7
         self.boostedSpeed = 13
+        self.extraY = 40
     
+    def move(self):
+        self.rect.move_ip(self.speed)
       
     def wallBounce(self,size):
         width=size[0]
@@ -25,8 +28,20 @@ class Ball():
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
             if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
                 if self.dist(other.rect.center)<self.radius+other.radius:
-                    self.speed[0]=-self.speed[0]
-                    self.speed[1]=-self.speed[1]
+                    if self.rect.centerx < other.rect.centerx: # hit on right
+                        if self.rect.centery < other.rect.centery - self.extraY: # hit on bottom
+                            self.speed = [-self.maxSpeed, -self.maxSpeed]
+                        elif self.rect.centery > other.rect.centery + self.extraY: # hit on bottom
+                            self.speed = [-self.maxSpeed, self.maxSpeed]
+                        else:
+                            self.speed = [-self.maxSpeed, 0]
+                    else:
+                        if self.rect.centery < other.rect.centery - self.extraY: # hit on bottom
+                            self.speed = [self.maxSpeed, -self.maxSpeed]
+                        elif self.rect.centery > other.rect.centery + self.extraY: # hit on bottom
+                            self.speed = [self.maxSpeed, self.maxSpeed]
+                        else:
+                            self.speed = [self.maxSpeed, 0]
                     
     def dist(self,pt):
         x1=self.rect.center[0]
@@ -34,6 +49,8 @@ class Ball():
         x2=pt[0]
         y2=pt[1]
         return math.sqrt((x2-x1)**2+(y2-y1)**2)
+        
+        
         
         
         

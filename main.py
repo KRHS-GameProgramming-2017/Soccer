@@ -73,6 +73,11 @@ while True:
     p1.wallBounce(size)
     p2.move()
     p2.wallBounce(size)
+    
+    ball.move()
+    ball.wallBounce(size)
+    ball.playerBounce(p1)
+    ball.playerBounce(p2)
 
     bgColor = r,g,b
     screen.fill(bgColor)
