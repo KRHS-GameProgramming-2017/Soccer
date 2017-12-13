@@ -50,8 +50,16 @@ class Ball():
         y2=pt[1]
         return math.sqrt((x2-x1)**2+(y2-y1)**2)
         
+    def bounceGoal(self, other, size):
+        width=size[0]
+        height=size[1]
         
-        
+        if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
+            if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+                self.rect.center = [width/2, height/2]
+                self.speed=[0,0]
+            
+            
         
         
         
