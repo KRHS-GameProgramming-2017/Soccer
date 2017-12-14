@@ -58,6 +58,8 @@ class Ball():
             if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
                 self.rect.center = [width/2, height/2]
                 self.speed=[0,0]
+                return True
+        return False
             
             
         

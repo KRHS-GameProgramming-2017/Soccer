@@ -70,17 +70,21 @@ while True:
                 p2.go("stop right")    
     
     p1.move()
-    p1.wallBounce(size)
+    p1.wallBounce()
     p2.move()
-    p2.wallBounce(size)
+    p2.wallBounce()
     
     ball.move()
     ball.wallBounce(size)
     ball.playerBounce(p1)
     ball.playerBounce(p2)
-    ball.bounceGoal(lGoal, size)
-    ball.bounceGoal(rGoal, size)
     
+    if ball.bounceGoal(lGoal, size):
+        p1.reset()
+        p2.reset()
+    if ball.bounceGoal(rGoal, size):
+        p1.reset()
+        p2.reset()
 
     bgColor = r,g,b
     screen.fill(bgColor)

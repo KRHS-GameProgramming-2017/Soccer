@@ -3,6 +3,7 @@ import pygame, math
 class Playerball():
     def __init__(self, side, screenSize, size=None):
         self.side = side
+        self.screenSize=screenSize
         if self.side == "right":
             self.image = pygame.image.load("Images/player/player1.png")
         else:
@@ -11,9 +12,9 @@ class Playerball():
             self.image=pygame.transform.scale(self.image,size)
         
         if self.side == "right":
-            self.rect = self.image.get_rect(center=[screenSize[0]*.85, screenSize[1]/2])
+            self.rect = self.image.get_rect(center=[ self.screenSize[0]*.85,  self.screenSize[1]/2])
         else:
-            self.rect = self.image.get_rect(center=[screenSize[0]*.15, screenSize[1]/2])
+            self.rect = self.image.get_rect(center=[ self.screenSize[0]*.15,  self.screenSize[1]/2])
             
         self.radius=self.rect.width/2
         self.speed = [0,0]
@@ -26,6 +27,12 @@ class Playerball():
     
     def move(self):
         self.rect.move_ip(self.speed)
+        
+    def reset(self):
+        if self.side == "right":
+            self.rect = self.image.get_rect(center=[ self.screenSize[0]*.85,  self.screenSize[1]/2])
+        else:
+            self.rect = self.image.get_rect(center=[ self.screenSize[0]*.15,  self.screenSize[1]/2])
     
     def go(self, direction):
 		if direction == "up":
@@ -46,9 +53,9 @@ class Playerball():
 		elif direction == "stop left":
 			self.speed[0] = 0
         
-    def wallBounce(self,size):
-        width=size[0]
-        height=size[1]
+    def wallBounce(self):
+        width = self.screenSize[0]
+        height = self.screenSize[1]
         
         if self.side == "right":
             if self.rect.left < width/2+self.centerSize or self.rect.right > width-self.endSize:
