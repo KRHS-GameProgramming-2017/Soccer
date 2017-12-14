@@ -10,7 +10,7 @@ class Ball():
         self.speed = [0,0]
         self.maxSpeed = 7
         self.boostedSpeed = 13
-        self.extraY = 40
+        self.extraY = 1
     
     def move(self):
         self.rect.move_ip(self.speed)
