@@ -3,7 +3,6 @@ import pygame, math, sys
 from Ball import *
 from Goal import *
 from Player import *
-
 pygame.init()
 
 
