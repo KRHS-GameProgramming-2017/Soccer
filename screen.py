@@ -1,4 +1,4 @@
-import pygame, math
+ import pygame, math
 
 
 pygame.image.load("score0-1.png")
