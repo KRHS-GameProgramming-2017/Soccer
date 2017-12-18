@@ -1,4 +1,4 @@
-import pygame, math
+ import pygame, math
 
 score1 = soccer.Images.scoreboard.load("score0-0.png")
 score1 = soccer.Images.scoreboard.load("score0-1.png")
