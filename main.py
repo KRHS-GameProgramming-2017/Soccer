@@ -3,6 +3,7 @@ import pygame, math, sys
 from Ball import *
 from Goal import *
 from Player import *
+from scorething import
 pygame.init()
 
 
@@ -19,6 +20,13 @@ screen = pygame.display.set_mode(size)
 bgColor = r,g,b = 0, 128, 33
 bgImage = pygame.image.load("Images/field/fieldfull.png")
 bgRect = bgImage.get_rect()
+
+
+Image = pygame.image.load("images/scoreboard/score0-0.png")
+
+
+
+
 
 ball = Ball(size, [40,40])
 rGoal = Goal("right", size)
