@@ -3,7 +3,7 @@ import pygame, math, sys
 from Ball import *
 from Goal import *
 from Player import *
-from scorething import
+from scorething import *
 pygame.init()
 
 
@@ -94,6 +94,7 @@ while True:
         p2.reset()
 
     bgColor = r,g,b
+    screen.blit(self, pos, size)
     screen.fill(bgColor)
     screen.blit(bgImage, bgRect)
     screen.blit(ball.image, ball.rect)
