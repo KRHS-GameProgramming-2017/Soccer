@@ -3,6 +3,7 @@ import pygame, math, sys
 from Ball import *
 from Goal import *
 from Player import *
+from Scoreboard import *
 pygame.init()
 
 
@@ -32,6 +33,9 @@ rGoal = Goal("right", size)
 lGoal = Goal("left", size) 
 p1= Playerball("right", size, [70,70])
 p2= Playerball("left", size, [70,70])
+rScore = Scoreboard([width/2+25, 25], "right")
+lScore = Scoreboard([width/2-25, 25], "left")
+
 
 
 
@@ -100,6 +104,8 @@ while True:
     screen.blit(lGoal.image, lGoal.rect)
     screen.blit(p1.image, p1.rect)
     screen.blit(p2.image, p2.rect)
+    screen.blit(rScore.image, rScore.rect)
+    screen.blit(lScore.image, lScore.rect)
     pygame.display.flip()
     clock.tick(60)
     print clock.get_fps()
