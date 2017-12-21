@@ -38,10 +38,16 @@ mode = "game"
 
 while True:
     while mode == "menu":
-        pass
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: 
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                mode = "game"
+        
     while mode == "game" :
         for event in pygame.event.get():
-            if event.type == pygame.QUIT: sys.exit()
+            if event.type == pygame.QUIT: 
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     p1.go("up")
