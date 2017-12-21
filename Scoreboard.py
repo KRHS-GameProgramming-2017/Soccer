@@ -19,5 +19,12 @@ class Scoreboard():
         self.score = 0
         self.image = self.images[self.score]
         self.rect = self.image.get_rect(center=pos)
+        
+    def pointadd(self):
+        if self.score < len(self.images)-1:
+            self.score += 1
+            self.image = self.images[self.score]
+            return False
+        return True
 
 

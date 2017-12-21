@@ -34,7 +34,7 @@ lScore = Scoreboard([width/2-50, 25], "left")
 
 
 
-mode = "game"
+mode = "menu"
 
 while True:
     while mode == "menu":
@@ -96,9 +96,13 @@ while True:
         if ball.bounceGoal(lGoal, size):
             p1.reset()
             p2.reset()
+            if rScore.pointadd():
+                mode = "home win"
         if ball.bounceGoal(rGoal, size):
             p1.reset()
             p2.reset()
+            if lScore.pointadd():
+                mode = "away win"
 
         bgColor = r,g,b
         screen.fill(bgColor)
