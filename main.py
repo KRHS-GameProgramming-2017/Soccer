@@ -29,8 +29,8 @@ rGoal = Goal("right", size)
 lGoal = Goal("left", size) 
 p1= Playerball("right", size, [70,70])
 p2= Playerball("left", size, [70,70])
-rScore = Scoreboard([width/2+25, 25], "right")
-lScore = Scoreboard([width/2-25, 25], "left")
+rScore = Scoreboard([width/2+50, 25], "right")
+lScore = Scoreboard([width/2-50, 25], "left")
 
 
 

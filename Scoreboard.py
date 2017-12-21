@@ -18,6 +18,6 @@ class Scoreboard():
                            pygame.image.load("Images/scoreboard/home5.png")]
         self.score = 0
         self.image = self.images[self.score]
-        self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect(center=pos)
 
 
