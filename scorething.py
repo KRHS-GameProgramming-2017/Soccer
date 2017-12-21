@@ -8,7 +8,7 @@ def __init__(self, pos, size):
                    pygame.image.load("away3.png"),
                    pygame.image.load("away4.png"),
                    pygame.image.load("away5.png")]
- else: "right"
+ else:
     self.images = [pygame.image.load("home0.png"),
                    pygame.image.load("home1.png"),
                    pygame.image.load("home2.png"),
