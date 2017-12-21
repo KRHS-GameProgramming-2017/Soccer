@@ -15,14 +15,10 @@ width = 1000
 height = 700
 size = width, height
 screen = pygame.display.set_mode(size)
-
-
 bgColor = r,g,b = 0, 128, 33
 bgImage = pygame.image.load("Images/field/fieldfull.png")
 bgRect = bgImage.get_rect()
 
-
-Image = pygame.image.load("images/scoreboard/score0-0.png")
 
 
 
