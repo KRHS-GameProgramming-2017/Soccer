@@ -22,8 +22,6 @@ bgImage = pygame.image.load("Images/field/fieldfull.png")
 bgRect = bgImage.get_rect()
 
 
-Image = pygame.image.load("images/scoreboard/score0-0.png")
-
 
 
 
