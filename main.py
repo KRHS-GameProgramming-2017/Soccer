@@ -37,6 +37,8 @@ lScore = Scoreboard([width/2-50, 25], "left")
 mode = "menu"
 
 while True:
+    bgImage = pygame.image.load("Images/Screens/MENU.png")
+    bgRect = bgImage.get_rect()
     while mode == "menu":
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
@@ -44,6 +46,12 @@ while True:
             if event.type == pygame.KEYDOWN:
                 mode = "game"
         
+        screen.fill(bgColor)
+        screen.blit(bgImage, bgRect)
+        pygame.display.flip()
+        clock.tick(60)
+    bgImage = pygame.image.load("Images/field/fieldfull.png")
+    bgRect = bgImage.get_rect()
     while mode == "game" :
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
@@ -103,6 +111,8 @@ while True:
             p2.reset()
             if lScore.pointadd():
                 mode = "away win"
+            
+            
 
         bgColor = r,g,b
         screen.fill(bgColor)
@@ -117,3 +127,31 @@ while True:
         pygame.display.flip()
         clock.tick(60)
         print clock.get_fps()
+        
+    bgImage = pygame.image.load("Images/Screens/home win.png")
+    bgRect = bgImage.get_rect()
+    while mode == "home win":
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: 
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                mode = "menu"
+        
+        screen.fill(bgColor)
+        screen.blit(bgImage, bgRect)
+        pygame.display.flip()
+        clock.tick(60)
+    
+    bgImage = pygame.image.load("Images/Screens/away win.png")
+    bgRect = bgImage.get_rect()
+    while mode == "away win":
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: 
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                mode = "menu"
+        
+        screen.fill(bgColor)
+        screen.blit(bgImage, bgRect)
+        pygame.display.flip()
+        clock.tick(60)
