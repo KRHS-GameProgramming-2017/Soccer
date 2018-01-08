@@ -24,7 +24,7 @@ bgRect = bgImage.get_rect()
 
 
 
-ball = Ball(size, [40,40])
+ball = Ball(size, [60,60])
 rGoal = Goal("right", size)
 lGoal = Goal("left", size) 
 p1= Playerball("right", size, [70,70])
