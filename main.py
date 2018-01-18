@@ -1,6 +1,7 @@
 import pygame, math, sys
 
 from Ball import *
+from PolarBall import *
 from Goal import *
 from Player import *
 from Scoreboard import *
@@ -24,7 +25,7 @@ bgRect = bgImage.get_rect()
 
 
 
-ball = Ball(size, [45,45])
+ball = PolarBall(size, [45,45])
 rGoal = Goal("right", size)
 lGoal = Goal("left", size) 
 p1= Playerball("right", size, [70,70])

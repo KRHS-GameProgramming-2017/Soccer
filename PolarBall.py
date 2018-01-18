@@ -4,8 +4,8 @@ from Ball import Ball
 class PolarBall(Ball):
     def __init__(self,  screenSize, size=None):
         Ball.__init__(self, screenSize, size)
-        angle = 0
-        totalSpeed = 0;
+        self.angle = 0
+        self.totalSpeed = 0;
         
     def move(self):
         self.convertSpeed()
@@ -16,11 +16,36 @@ class PolarBall(Ball):
         height=size[1]
         
         if self.rect.left < 0 or self.rect.right > width:
-            self.angle -= 180
+            self.angle = 360 - self.angle
+            self.move()
         elif self.rect.top < 0 or self.rect.bottom > height:
-            self.angle -= 180
-     
+            self.angle = 180 - self.angle
+            self.move()
+    
+    def playerBounce(self, other):
+        if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
+            if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+                if self.dist(other.rect.center)<self.radius+other.radius:
+                    self.totalSpeed = 7
+                    self.setAngle(other.rect.center)
         
+    def setAngle(self, pt):
+        diffX = float(self.rect.centerx - pt[0])
+        diffY = float(self.rect.centery - pt[1])
+        if diffY == 0:
+            if diffX < 0:
+                self.angle = 90
+            else:
+                self.angle = 270
+        elif diffX == 0:
+            if diffY < 0:
+                self.angle = 0
+            else:
+                self.angle = 180
+        else:
+            self.angle = math.degrees(math.atan(diffY/diffX))
+                
+    
     def convertSpeed(self):
         self.angle %= 360 #remainder keeps us bound 0 -> 360
         if self.totalSpeed == 0:
@@ -75,6 +100,7 @@ if __name__ == "__main__":
             
         ball.move()
         ball.wallBounce(size)
+        print ball.angle
         
         bgColor = r,g,b
         screen.fill(bgColor)
