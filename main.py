@@ -53,6 +53,15 @@ while True:
         clock.tick(60)
     bgImage = pygame.image.load("Images/field/fieldfull.png")
     bgRect = bgImage.get_rect()
+    while mode == "count down" :
+        pygame.image.load("three.png")
+        
+        
+        
+        screen.fill()
+        screen.blit(Image)
+        pygame.display.flip()
+        clock.tick(60)
     while mode == "game" :
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
