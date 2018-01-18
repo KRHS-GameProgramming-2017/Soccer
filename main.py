@@ -44,7 +44,7 @@ while True:
             if event.type == pygame.QUIT: 
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                mode = "game"
+                mode = "count down"
         
         screen.fill(bgColor)
         screen.blit(bgImage, bgRect)
@@ -52,13 +52,38 @@ while True:
         clock.tick(60)
     bgImage = pygame.image.load("Images/field/fieldfull.png")
     bgRect = bgImage.get_rect()
+    count = 0;
+    countDown = pygame.image.load("Images/field/three.png")
+    countDownRect = countDown.get_rect(center = [width/2, height/2])
     while mode == "count down" :
-        pygame.image.load("three.png")
         
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: 
+                sys.exit()
         
-        
-        screen.fill()
-        screen.blit(Image)
+        count += 1
+        if count == 60:
+            countDown = pygame.image.load("Images/field/two.png")
+            countDownRect = countDown.get_rect(center = [width/2, height/2])
+        if count == 120:
+            countDown = pygame.image.load("Images/field/one.png")
+            countDownRect = countDown.get_rect(center = [width/2, height/2])
+        if count == 180:
+            countDown = pygame.image.load("Images/field/Go.png")
+            countDownRect = countDown.get_rect(center = [width/2
+            , height/2])
+        if count == 240:
+            mode = "game"
+        screen.fill(bgColor)
+        screen.blit(bgImage, bgRect)
+        screen.blit(ball.image, ball.rect)
+        screen.blit(rGoal.image, rGoal.rect)
+        screen.blit(lGoal.image, lGoal.rect)
+        screen.blit(p1.image, p1.rect)
+        screen.blit(p2.image, p2.rect)
+        screen.blit(rScore.image, rScore.rect)
+        screen.blit(lScore.image, lScore.rect)
+        screen.blit(countDown, countDownRect)
         pygame.display.flip()
         clock.tick(60)
     while mode == "game" :
