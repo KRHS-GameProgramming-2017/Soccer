@@ -8,7 +8,7 @@ class Ball():
         self.rect = self.image.get_rect(center=[screenSize[0]/2, screenSize[1]/2])
         self.radius=self.rect.width/2
         self.speed = [0,0]
-        self.maxSpeed = 9
+        self.maxSpeed = 11
         self.boostedSpeed = 15
         self.extraY = 1
     
@@ -42,6 +42,10 @@ class Ball():
                             self.speed = [self.maxSpeed, self.maxSpeed]
                         else:
                             self.speed = [self.maxSpeed, 0]
+    
+    def bounceGoal(self, other, size):
+        width=size[0]
+        height=size[1]
                     
     def dist(self,pt):
         x1=self.rect.center[0]

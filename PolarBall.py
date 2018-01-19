@@ -91,7 +91,7 @@ if __name__ == "__main__":
 
     ball = PolarBall(size, [60,60])
     ball.angle = 45
-    ball.totalSpeed = 7
+    ball.totalSpeed = 20
     
     while True:
         for event in pygame.event.get():
