@@ -6,6 +6,7 @@ class PolarBall(Ball):
         Ball.__init__(self, screenSize, size)
         self.angle = 0
         self.totalSpeed = 0;
+        self.screenSize = screenSize
         
     def move(self):
         self.convertSpeed()
@@ -25,7 +26,7 @@ class PolarBall(Ball):
             
     def reset(self): 
         self.rect = self.image.get_rect(center=[ self.screenSize[0]/2,  self.screenSize[1]/2])
-        self.totalspeed = 0
+        self.totalSpeed = 0
     
     def playerBounce(self, other):
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
