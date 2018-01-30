@@ -139,11 +139,13 @@ while True:
         if ball.bounceGoal(lGoal, size):
             p1.reset()
             p2.reset()
+            ball.reset()
             if rScore.pointadd():
                 mode = "home win"
         if ball.bounceGoal(rGoal, size):
             p1.reset()
             p2.reset()
+            ball.reset()
             if lScore.pointadd():
                 mode = "away win"
             

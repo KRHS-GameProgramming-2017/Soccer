@@ -21,6 +21,11 @@ class PolarBall(Ball):
         elif self.rect.top < 0 or self.rect.bottom > height:
             self.angle = 180 - self.angle
             self.move()
+            
+            
+    def reset(self): 
+        self.rect = self.image.get_rect(center=[ self.screenSize[0]/2,  self.screenSize[1]/2])
+        self.totalspeed = 0
     
     def playerBounce(self, other):
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
