@@ -142,12 +142,20 @@ while True:
             ball.reset()
             if rScore.pointadd():
                 mode = "home win"
+                
+            #if rScore > (5):
+            
         if ball.bounceGoal(rGoal, size):
             p1.reset()
             p2.reset()
             ball.reset()
             if lScore.pointadd():
                 mode = "away win"
+
+                
+                
+            #if lScore > (5):
+              
             
             
 
@@ -167,12 +175,15 @@ while True:
         
     bgImage = pygame.image.load("Images/Screens/home win.png")
     bgRect = bgImage.get_rect()
+    rScore.pointreset()
+    lScore.pointreset()
     while mode == "home win":
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 mode = "menu"
+        
         
         screen.fill(bgColor)
         screen.blit(bgImage, bgRect)

@@ -26,5 +26,10 @@ class Scoreboard():
             self.image = self.images[self.score]
             return False
         return True
+        
+    def pointreset(self):
+        self.score = 0
+        self.image = self.images[self.score]
+        
 
 
