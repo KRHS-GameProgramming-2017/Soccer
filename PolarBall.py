@@ -26,7 +26,10 @@ class PolarBall(Ball):
             
     def reset(self): 
         self.rect = self.image.get_rect(center=[ self.screenSize[0]/2,  self.screenSize[1]/2])
+        #self.rect = self.image.get_rect(center=[ self.screenSize[0]/3*2,  self.screenSize[1]/2])
         self.totalSpeed = 0
+        print
+        print
     
     def playerBounce(self, other):
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
@@ -34,22 +37,23 @@ class PolarBall(Ball):
                 if self.dist(other.rect.center)<self.radius+other.radius:
                     self.totalSpeed = 7
                     self.setAngle(other.rect.center)
+                    print self.angle
         
     def setAngle(self, pt):
         diffX = float(self.rect.centerx - pt[0])
         diffY = float(self.rect.centery - pt[1])
-        if diffY == 0:
-            if diffX < 0:
-                self.angle = 90
-            else:
-                self.angle = 270
-        elif diffX == 0:
-            if diffY < 0:
-                self.angle = 0
-            else:
-                self.angle = 180
-        else:
-            self.angle = math.degrees(math.atan(diffY/diffX))
+        #if diffY == 0:
+            #if diffX < 0:
+                #self.angle = 90
+            #else:
+                #self.angle = 270
+        #elif diffX == 0:
+            #if diffY < 0:
+                #self.angle = 180
+            #else:
+                #self.angle = 0
+        #else:
+        self.angle = -math.degrees(math.atan2(diffY,diffX))-90
                 
     
     def convertSpeed(self):

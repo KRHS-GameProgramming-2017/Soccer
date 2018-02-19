@@ -171,7 +171,7 @@ while True:
         screen.blit(lScore.image, lScore.rect)
         pygame.display.flip()
         clock.tick(60)
-        print clock.get_fps()
+        #print clock.get_fps()
         
     bgImage = pygame.image.load("Images/Screens/home win.png")
     bgRect = bgImage.get_rect()
