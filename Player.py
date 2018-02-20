@@ -70,7 +70,8 @@ class Playerball():
 
         if self.rect.top < self.borderSize or self.rect.bottom > height - self.borderSize:
             self.speed[1] = -self.speed[1]
-            self.move()
+            while self.rect.top < self.borderSize or self.rect.bottom > height - self.borderSize:
+                self.move()
             self.speed[1] = 0
      
     def playerBounce(self, other):
