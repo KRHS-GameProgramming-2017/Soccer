@@ -46,6 +46,8 @@ while True:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 mode = "count down"
+                rScore.pointreset()
+                lScore.pointreset()
         
         screen.fill(bgColor)
         screen.blit(bgImage, bgRect)
@@ -56,6 +58,7 @@ while True:
     count = 0;
     countDown = pygame.image.load("Images/field/three.png")
     countDownRect = countDown.get_rect(center = [width/2, height/2])
+    countDownTime = 30
     while mode == "count down" :
         
         for event in pygame.event.get():
@@ -63,17 +66,17 @@ while True:
                 sys.exit()
         
         count += 1
-        if count == 60:
+        if count == countDownTime:
             countDown = pygame.image.load("Images/field/two.png")
             countDownRect = countDown.get_rect(center = [width/2, height/2])
-        if count == 120:
+        if count == countDownTime*2:
             countDown = pygame.image.load("Images/field/one.png")
             countDownRect = countDown.get_rect(center = [width/2, height/2])
-        if count == 180:
+        if count == countDownTime*3:
             countDown = pygame.image.load("Images/field/Go.png")
             countDownRect = countDown.get_rect(center = [width/2
             , height/2])
-        if count == 240:
+        if count == countDownTime*4:
             mode = "game"
         screen.fill(bgColor)
         screen.blit(bgImage, bgRect)
@@ -142,6 +145,8 @@ while True:
             ball.reset()
             if rScore.pointadd():
                 mode = "home win"
+            else:
+                mode = "count down"
                 
             #if rScore > (5):
             
@@ -151,6 +156,8 @@ while True:
             ball.reset()
             if lScore.pointadd():
                 mode = "away win"
+            else:
+                mode = "count down"
 
                 
                 
@@ -175,8 +182,6 @@ while True:
         
     bgImage = pygame.image.load("Images/Screens/home win.png")
     bgRect = bgImage.get_rect()
-    rScore.pointreset()
-    lScore.pointreset()
     while mode == "home win":
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
