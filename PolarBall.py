@@ -1,4 +1,4 @@
-import pygame, math
+import pygame, math, random
 from Ball import Ball
 
 class PolarBall(Ball):
@@ -37,6 +37,7 @@ class PolarBall(Ball):
                 if self.dist(other.rect.center)<self.radius+other.radius:
                     self.totalSpeed = 7
                     self.setAngle(other.rect.center)
+                    self.angle += random.randint(-5, 5)
                     print self.angle
         
     def setAngle(self, pt):
