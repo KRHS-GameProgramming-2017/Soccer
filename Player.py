@@ -32,8 +32,10 @@ class Playerball():
     def reset(self):
         if self.side == "right":
             self.rect = self.image.get_rect(center=[ self.screenSize[0]*.85,  self.screenSize[1]/2])
+            self.speed = [0,0]
         else:
             self.rect = self.image.get_rect(center=[ self.screenSize[0]*.15,  self.screenSize[1]/2])
+            self.speed = [0,0]
     
     def go(self, direction):
 		if direction == "up":
