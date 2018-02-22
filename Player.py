@@ -18,8 +18,9 @@ class Playerball():
             
         self.radius=self.rect.width/2
         self.speed = [0,0]
-        self.maxSpeed = 6
-        self.boostedSpeed = 13
+        self.maxSpeed = 7
+        self.boostedSpeed = 12
+   
         
         self.borderSize = 10
         self.endSize = 33
