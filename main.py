@@ -208,4 +208,3 @@ while True:
         screen.blit(bgImage, bgRect)
         pygame.display.flip()
         clock.tick(60)
-  
