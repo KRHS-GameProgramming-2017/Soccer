@@ -6,6 +6,7 @@ from Goal import *
 from Player import *
 from Scoreboard import *
 from Button import *
+from AI import *
 pygame.init()
 
 
@@ -27,9 +28,7 @@ bgRect = bgImage.get_rect()
 
 ball = PolarBall(size, [45,45])
 rGoal = Goal("right", size)
-lGoal = Goal("left", size) 
-p1= Playerball("right", size, [70,70])
-p2= Playerball("left", size, [70,70])
+lGoal = Goal("left", size)
 rScore = Scoreboard([width/2+50, 25], "right")
 lScore = Scoreboard([width/2-50, 25], "left")
 sButton= Button([width/4,height/2], "single")
@@ -113,40 +112,50 @@ while True:
             if event.type == pygame.QUIT: 
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
-                    p1.go("up")
-                if event.key == pygame.K_DOWN:
-                    p1.go("down")
-                if event.key == pygame.K_LEFT: 
-                    p1.go("left")
-                if event.key == pygame.K_RIGHT: 
-                    p1.go("right")
-                if event.key == pygame.K_w:
-                    p2.go("up")
-                if event.key == pygame.K_s:
-                    p2.go("down")
-                if event.key == pygame.K_a:    
-                    p2.go("left")
-                if event.key == pygame.K_d:  
-                    p2.go("right")
+                if p1.type == "Human":
+                    if event.key == pygame.K_UP:
+                        p1.go("up")
+                    if event.key == pygame.K_DOWN:
+                        p1.go("down")
+                    if event.key == pygame.K_LEFT: 
+                        p1.go("left")
+                    if event.key == pygame.K_RIGHT: 
+                        p1.go("right")
+                if p2.type == "Human":
+                    if event.key == pygame.K_w:
+                        p2.go("up")
+                    if event.key == pygame.K_s:
+                        p2.go("down")
+                    if event.key == pygame.K_a:    
+                        p2.go("left")
+                    if event.key == pygame.K_d:  
+                        p2.go("right")
             if event.type == pygame.KEYUP:
-                if event.key == pygame.K_UP: 
-                    p1.go("stop up")
-                if event.key == pygame.K_DOWN: 
-                    p1.go("stop down")
-                if event.key == pygame.K_LEFT: 
-                    p1.go("stop left")
-                if event.key == pygame.K_RIGHT: 
-                    p1.go("stop right")
-                if event.key == pygame.K_w:
-                    p2.go("stop up")
-                if event.key == pygame.K_s:
-                    p2.go("stop down")
-                if event.key == pygame.K_a: 
-                    p2.go("stop left")
-                if event.key == pygame.K_d:   
-                    p2.go("stop right")    
+                if p1.type == "Human":
+                    if event.key == pygame.K_UP: 
+                        p1.go("stop up")
+                    if event.key == pygame.K_DOWN: 
+                        p1.go("stop down")
+                    if event.key == pygame.K_LEFT: 
+                        p1.go("stop left")
+                    if event.key == pygame.K_RIGHT: 
+                        p1.go("stop right")
+                if p2.type == "Human":
+                    if event.key == pygame.K_w:
+                        p2.go("stop up")
+                    if event.key == pygame.K_s:
+                        p2.go("stop down")
+                    if event.key == pygame.K_a: 
+                        p2.go("stop left")
+                    if event.key == pygame.K_d:   
+                        p2.go("stop right")   
+                        
+        if p1.type == "AI":
+            p1.go()
         
+        if p2.type == "AI":
+            p2.go()
+            
         p1.move()
         p1.wallBounce()
         p2.move()

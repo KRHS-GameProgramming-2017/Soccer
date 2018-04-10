@@ -15,6 +15,8 @@ class Playerball():
             self.rect = self.image.get_rect(center=[ self.screenSize[0]*.85,  self.screenSize[1]/2])
         else:
             self.rect = self.image.get_rect(center=[ self.screenSize[0]*.15,  self.screenSize[1]/2])
+        
+        self.type = "Human"
             
         self.radius=self.rect.width/2
         self.speed = [0,0]
@@ -90,6 +92,8 @@ class Playerball():
         x2=pt[0]
         y2=pt[1]
         return math.sqrt((x2-x1)**2+(y2-y1)**2)
+        
+        
 
     
 	
