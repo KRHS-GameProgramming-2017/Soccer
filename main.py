@@ -5,6 +5,7 @@ from PolarBall import *
 from Goal import *
 from Player import *
 from Scoreboard import *
+from Button import *
 pygame.init()
 
 
@@ -24,7 +25,6 @@ bgRect = bgImage.get_rect()
 
 
 
-
 ball = PolarBall(size, [45,45])
 rGoal = Goal("right", size)
 lGoal = Goal("left", size) 
@@ -32,11 +32,12 @@ p1= Playerball("right", size, [70,70])
 p2= Playerball("left", size, [70,70])
 rScore = Scoreboard([width/2+50, 25], "right")
 lScore = Scoreboard([width/2-50, 25], "left")
-
-
+sButton= Button([width/4,height/2], "single")
+mButton= Button([(width/4)*3, height/2], "else")
 
 mode = "menu"
-
+so = False
+mo = False
 while True:
     bgImage = pygame.image.load("Images/Screens/MENU.png")
     bgRect = bgImage.get_rect()
@@ -44,13 +45,30 @@ while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
                 sys.exit()
-            if event.type == pygame.KEYDOWN:
-                mode = "count down"
-                rScore.pointreset()
-                lScore.pointreset()
+            if event.type == pygame.MOUSEMOTION:
+                so = sButton.mouseOver(event.pos)
+                mo = mButton.mouseOver(event.pos)
+            if event.type == pygame.MOUSEBUTTONUP:
+                if so:
+                    mode = "count down"
+                    rScore.pointreset()
+                    lScore.pointreset()
+                    p1= Playerball("right", size, [70,70])
+                    p2= AI("left", size, ball, [70,70])
+                if mo:
+                    mode = "count down"
+                    rScore.pointreset()
+                    lScore.pointreset()
+                    p1= Playerball("right", size, [70,70])
+                    p2= Playerball("left", size, [70,70])
+        
+                
+                
         
         screen.fill(bgColor)
         screen.blit(bgImage, bgRect)
+        screen.blit(sButton.image, sButton.rect)
+        screen.blit(mButton.image, mButton.rect)
         pygame.display.flip()
         clock.tick(60)
     bgImage = pygame.image.load("Images/field/fieldfull.png")
