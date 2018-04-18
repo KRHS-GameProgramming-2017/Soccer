@@ -8,8 +8,8 @@ class Ball():
         self.rect = self.image.get_rect(center=[screenSize[0]/2, screenSize[1]/2])
         self.radius=self.rect.width/2
         self.speed = [0,0]
-        self.maxSpeed = 13
-        self.boostedSpeed = 17
+        self.maxSpeed = 14
+        self.boostedSpeed = 18
         self.extraY = 1
     
     def move(self):
