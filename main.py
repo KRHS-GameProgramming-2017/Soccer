@@ -51,6 +51,7 @@ while True:
                 if so:
                     mode = "count down"
                     rScore.pointreset()
+                    rScore.pointreset()
                     lScore.pointreset()
                     p1= Playerball("right", size, [70,70])
                     p2= AI("left", size, ball, [70,70])

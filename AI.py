@@ -6,13 +6,58 @@ class AI(Playerball):
         Playerball.__init__(self, side, screensize, size)
         self.type = "AI"
         self.ball = ball
+        self.noMove = 0;
+        self.noMoveMax = 60*.5
+        self.atGoal = False
+        self.stuck = False
+        self.oldpos = [0,0]
         
     def whereBall(self):
         print self.ball.rect.center
+    
+    def reset(self):
+        Playerball.reset(self)
+        self.noMove = 0
+        self.stuck = False
+        
+    def checkAtGoal(self):
+        width = self.screenSize[0]
+        height = self.screenSize[1]
+        
+        if self.rect.centery < height/2 + 25 and self.rect.centery > height/2 - 25:
+            #print "Y at Goal!"
+            self.atGoal = True
+            
+        else:
+            self.atGoal = False
+            
         
     def go(self):
-        direction = self.getDirection()
-        print self.side, direction
+        self.checkAtGoal()
+        if self.oldpos == self.rect.center:
+            self.noMove += 1
+            #print self.noMove
+        else:
+            self.oldpos = self.rect.center
+            self.noMove = 0
+        
+        if self.noMove > self.noMoveMax:
+            self.stuck = True
+            self.noMove = 0
+        
+        if self.atGoal:
+            self.stuck = False
+            self.noMove = 0
+        
+        if self.stuck:
+            height = self.screenSize[1]
+            if self.rect.centery > height/2:
+                direction = "up";
+            else:
+                direction = "down"
+        else:
+            direction = self.getDirection()
+            #print self.side, direction
         if direction == "up":
             self.speed[0] = 0
             self.speed[1] = -self.maxSpeed

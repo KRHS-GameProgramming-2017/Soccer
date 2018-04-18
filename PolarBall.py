@@ -23,13 +23,21 @@ class PolarBall(Ball):
             self.angle = 180 - self.angle
             self.move()
             
+        if self.rect.top < 0:
+            self.rect.top = 1
+        if self.rect.bottom > height:
+            self.rect.bottom = height - 1
+        if self.rect.left < 0:
+            self.rect.left = 1
+        if self.rect.right > width:
+            self.rect.right = width - 1
             
     def reset(self): 
         self.rect = self.image.get_rect(center=[ self.screenSize[0]/2,  self.screenSize[1]/2])
         #self.rect = self.image.get_rect(center=[ self.screenSize[0]/3*2,  self.screenSize[1]/2])
         self.totalSpeed = 0
-        print
-        print
+        #print
+        #print
     
     def playerBounce(self, other):
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
@@ -38,7 +46,8 @@ class PolarBall(Ball):
                     self.totalSpeed = 7
                     self.setAngle(other.rect.center)
                     self.angle += random.randint(-5, 5)
-                    print self.angle
+                    #print self.angle
+                    self.move()
         
     def setAngle(self, pt):
         diffX = float(self.rect.centerx - pt[0])
@@ -111,7 +120,7 @@ if __name__ == "__main__":
             
         ball.move()
         ball.wallBounce(size)
-        print ball.angle
+        #print ball.angle
         
         bgColor = r,g,b
         screen.fill(bgColor)
