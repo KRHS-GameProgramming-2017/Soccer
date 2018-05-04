@@ -11,7 +11,6 @@ pygame.init()
 
 
 
-
 clock = pygame.time.Clock()
 
 width = 1000
@@ -113,6 +112,18 @@ while True:
             if event.type == pygame.QUIT: 
                 sys.exit()
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    paused = True
+                    waitForKey = False
+                    while paused:
+                        for event in pygame.event.get():
+                            if event.type == pygame.KEYUP:
+                                if event.key == pygame.K_ESCAPE:
+                                    waitForKey = True
+                            if event.type == pygame.KEYDOWN:
+                                if event.key == pygame.K_ESCAPE:
+                                    if waitForKey:
+                                        paused = False
                 if p1.type == "Human":
                     if event.key == pygame.K_UP:
                         p1.go("up")
