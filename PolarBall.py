@@ -43,11 +43,17 @@ class PolarBall(Ball):
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
             if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
                 if self.dist(other.rect.center)<self.radius+other.radius:
-                    self.totalSpeed = 7
+                    if other.powerup == "fastball":
+                        self.totalSpeed = self.boostedSpeed
+                    else:
+                        self.totalSpeed = self.normalSpeed
+                    self.maxSpeed = self.totalSpeed
                     self.setAngle(other.rect.center)
                     self.angle += random.randint(-5, 5)
                     #print self.angle
                     self.move()
+                    return True
+        return False
         
     def setAngle(self, pt):
         diffX = float(self.rect.centerx - pt[0])

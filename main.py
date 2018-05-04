@@ -7,6 +7,7 @@ from Player import *
 from Scoreboard import *
 from Button import *
 from AI import *
+from Powerup import *
 pygame.init()
 
 
@@ -25,7 +26,7 @@ bgRect = bgImage.get_rect()
 
 
 
-
+ 
 ball = PolarBall(size, [45,45])
 rGoal = Goal("right", size)
 lGoal = Goal("left", size)
@@ -108,6 +109,9 @@ while True:
         screen.blit(countDown, countDownRect)
         pygame.display.flip()
         clock.tick(60)
+    powerup = None
+    powerupTimer = 0;
+    powerupTimerMax = 4 * 60;
     while mode == "game" :
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
@@ -150,6 +154,12 @@ while True:
                         p2.go("stop left")
                     if event.key == pygame.K_d:   
                         p2.go("stop right")   
+                       
+        if powerupTimer < powerupTimerMax:
+            powerupTimer += 1
+        else:
+            powerupTimer = 0
+            powerup = Powerup("fastball", size, [50,50]) 
                         
         if p1.type == "AI":
             p1.go()
@@ -164,8 +174,10 @@ while True:
         
         ball.move()
         ball.wallBounce(size)
-        ball.playerBounce(p1)
-        ball.playerBounce(p2)
+        if ball.playerBounce(p1):
+            p1.ballBounce(ball)
+        if ball.playerBounce(p2):
+            p2.ballBounce(ball)
         
         if ball.bounceGoal(lGoal, size):
             p1.reset()
@@ -190,8 +202,12 @@ while True:
                 
                 
             #if lScore > (5):
-              
+        if powerup:      
+            if p1.powerupBounce(powerup):
+                powerup = None
             
+            elif p2.powerupBounce(powerup):
+                powerup = None
             
 
         bgColor = r,g,b
@@ -204,6 +220,8 @@ while True:
         screen.blit(p2.image, p2.rect)
         screen.blit(rScore.image, rScore.rect)
         screen.blit(lScore.image, lScore.rect)
+        if powerup:
+            screen.blit(powerup.image, powerup.rect)
         pygame.display.flip()
         clock.tick(60)
         #print clock.get_fps()

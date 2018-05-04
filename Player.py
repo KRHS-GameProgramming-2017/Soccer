@@ -27,11 +27,15 @@ class Playerball():
         self.borderSize = 10
         self.endSize = 33
         self.centerSize = 12/2
+        
+        self.powerup=None
+        
     
     def move(self):
         self.rect.move_ip(self.speed)
         
     def reset(self):
+        self.powerup=None
         if self.side == "right":
             self.rect = self.image.get_rect(center=[ self.screenSize[0]*.85,  self.screenSize[1]/2])
             self.speed = [0,0]
@@ -85,6 +89,18 @@ class Playerball():
                 if self.dist(other.rect.center)<self.radius+other.radius:
                     self.speed[0]=-self.speed[0]
                     self.speed[1]=-self.speed[1]
+    
+    def ballBounce(self, other):
+        self.powerup=None
+        print "no more powerup"
+                    
+    def powerupBounce(self, other):
+        if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
+            if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+                if self.dist(other.rect.center)<self.radius+other.radius:
+                    self.powerup=other.kind
+                    return True
+        return False
                     
     def dist(self,pt):
         x1=self.rect.center[0]
